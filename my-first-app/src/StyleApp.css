@@ -1,0 +1,32 @@
+.oneMes {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border: 1px solid green;
+    background-color: aqua;
+}
+
+.oneMes-user {
+    width: 30%;
+    margin-left: 2%;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 0em;
+    color: rgb(0, 120, 201);
+}
+
+.oneMes-user:hover {
+    color: rgb(0, 64, 201);
+    text-shadow: 1px 1px 2px black, 0 0 1em red;
+}
+
+.oneMes-text {
+    width: 80%;
+    margin-left: 5%;
+    text-align: left;
+    font-size: 12px;
+    line-height: 0em;
+    font-style: italic;
+    color: rgb(33, 33, 33);
+}
