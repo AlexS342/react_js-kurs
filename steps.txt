@@ -1,5 +1,0 @@
-Lesson-1
-1. Создание первого приложения:
-Изначально в пустой папке, в терменале вводим команду:
-alexs@desktop:~/developer/www/react_js-kurs$ npx create-react-app my-first-app
-
