@@ -1,4 +1,4 @@
-import React from 'react';                                                      //Подключаем react
+import React from 'react';                                          //Подключаем react
 import ReactDOM from 'react-dom/client';                                        //Подключаем react-dom/client
 import './index.css';                                                           //Подключаем react index.css
 import App from './App';                                                        //Подключаем react App.js
