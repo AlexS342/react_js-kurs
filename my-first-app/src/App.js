@@ -10,12 +10,10 @@ function App() {                                                                
     //className="App" указывает стили из подключенного css файла
     //Теги <header>, <p>, <h3> тоже самое, что и в HTML 
     <div className="App">
-      <header className="App-header">
-        <p>Все ровно я в этом разберусь!</p>
-        <p>Привет всем!!!</p>
+      <main>
+        <h1>Похоже, это будет какой-то супер чат!!!</h1>
         <Message newMess={newMessage} user={user1} />
-        <h3>О да!!! Я сделал </h3>
-      </header>
+      </main>
     </div>
   );
 }
