@@ -44,7 +44,7 @@ const Form = ({ data, setData, setMessage }) => {
   const submitForm = (item) => {
     console.log(item)
     item.preventDefault()
-    if (text.ligth > 0) {
+    if (text.length > 0) {
       setMessage(prevent => [...prevent, { text, author }])
       console.log(setMessage)
     }
