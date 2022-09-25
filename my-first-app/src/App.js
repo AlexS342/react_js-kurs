@@ -1,37 +1,84 @@
+import React, { useState, useEffect } from 'react';                                          //Подключаем react
 import './App.css';                                                             //импортируем App.css
 import './StyleApp.css';
 
-function App() {                                                                //Создаем функцию App()
+function App() {
+  const superMess = [
+    { author: 'Jon', text: "Hi! What's up?" },
+    { author: 'Ken', text: "Normal. I'm going to school." },
+    { author: 'Mery', text: 'Are you out of your mind? Today is the day off!' }
 
-  const newMessage = 'Грызёшь гранит науки как будто зубы не свои!!!';          //Создаем константу newMessage с данными
-  const user1 = 'Василий';
-  return (                                                                      //Функция возврощает все, что в скобках
-    //Основной div className="App", может быть только один
-    //className="App" указывает стили из подключенного css файла
-    //Теги <header>, <p>, <h3> тоже самое, что и в HTML 
-    <div className="App">
-      <header className="App-header">
-        <p>Все ровно я в этом разберусь!</p>
-        <p>Привет всем!!!</p>
-        <Message newMess={newMessage} user={user1} />
-        <h3>О да!!! Я сделал </h3>
-      </header>
+  ]
+  const [messageList, setMessageList] = useState(superMess);
+  const [messageBody, setMessageBody] = useState({
+    text: '',
+    author: ''
+  });
+
+  const ROBOT_MESSAGE = 'Привет человет! Я получил твое сообщение';
+
+  useEffect(() => {
+    if (messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot') {
+      setTimeout(() => {
+        setMessageList(pervstate => [...pervstate, { text: ROBOT_MESSAGE, author: 'robot' }])
+      }, 1500)
+    }
+  }, [messageList]);
+
+  return (
+    <div className='App'>
+      <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList}></Form>
+      <div className='massageList'>
+        {messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} />)}
+      </div>
     </div>
   );
 }
 
-const Message = (props) => {                                                    //компонент Message, его можно вставлять в function App(),
-  //props - это данные принимае из стороки <Message newMess={newMessage} user={user1} />
-  //Способы диструкторизации props
-  //const Message = ({newMes, user}) => {
-  //Тогда {props.user} и {props.newMess} можно писать {user} и {newMess}
-  return (                                                                      //компанент возврощает все, что в скобках будет вставлено место него
-    <div className='oneMes'>
-      <p className='oneMes-user'>{props.user}: </p>
-      <p className='oneMes-text'>{props.newMess}</p>
-    </div>
+export default App;
+
+const Form = ({ data, setData, setMessage }) => {
+
+  const { text, author } = data;
+
+  const submitForm = (item) => {
+    console.log(item)
+    item.preventDefault()
+    if (text.length > 0) {
+      setMessage(prevent => [...prevent, { text, author }])
+      console.log(setMessage)
+    }
+
+    setData(
+      {
+        text: '',
+        author: ''
+      }
+    )
+  }
+
+  return (
+    <form onSubmit={submitForm}>
+      <input placeholder="Имя" value={author} onChange={(item) => {
+        setData(pervstate => ({ ...pervstate, author: item.target.value }));
+      }} />
+
+      <input placeholder="Текст" value={text} onChange={(item) => {
+        setData(pervstate => ({ ...pervstate, text: item.target.value }));
+      }} />
+      <button type='submit'>Отправить</button>
+    </form>
   )
 }
 
-export default App;                                                             //Разрешаем экспорт функции App() 
+const Message = ({ author, text }) => {
 
+  return (
+    <div className='oneMes'>
+      <hr />
+      <h2 className="oneMes-user">{author}</h2>
+      <p className="oneMes-text">{text}</p>
+      <hr />
+    </div>
+  )
+}
