@@ -7,11 +7,33 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+//import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+//import Typography from '@mui/material/Typography';
+
+//import List from '@mui/material/List';
+//import ListItem from '@mui/material/ListItem';
+//import ListItemText from '@mui/material/ListItemText';
+import CommentIcon from '@mui/icons-material/Comment';
+import IconButton from '@mui/material/IconButton';
+
+
 
 
 function App() {
   const [messageList, setMessageList] = useState([]);
   const [messageBody, setMessageBody] = useState({ text: '', author: '' });
+  const [chatList, setChatList] = useState([
+    { name: 'Спорт', id: 1 },
+    { name: 'Наука', id: 2 },
+    { name: 'Фотография', id: 3 },
+    { name: 'Кино', id: 4 },
+    { name: 'Отдых', id: 5 },
+  ])
   const ROBOT_MESSAGE = 'Привет человет! Я получил твое сообщение';
 
   useEffect(() => {
@@ -24,22 +46,23 @@ function App() {
 
   return (
     <div className='App'>
-      <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList}></Form>
-      <div className='massageList'>
-        {messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} />)}
+      <ChatList chatName={chatList} />
+      <div className='App-DialogueList'>
+        <h2>ChatName</h2>
+        <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList}></Form>
+        <List sx={{ width: '100%', maxWidth: 700, bgcolor: 'background.paper' }}>
+          {messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} />)}
+        </List>
       </div>
+
     </div>
   );
 }
 
-export default App;
-
 const Form = ({ data, setData, setMessage }) => {
 
   const inputFocus = useRef(null);
-
   const { text, author } = data;
-
   const submitForm = (item) => {
     if (text.length > 0) {
       setMessage(prevent => [...prevent, { text, author }])
@@ -50,7 +73,7 @@ const Form = ({ data, setData, setMessage }) => {
   }
 
   return (
-    <form onSubmit={submitForm}>
+    <form className="App-form" onSubmit={submitForm}>
       <TextField fullWidth ref={inputFocus} label="Имя" id="fullWidth" autoFocus={true} value={author} onChange={(item) => {
         setData(pervstate => ({ ...pervstate, author: item.target.value }));
       }} />
@@ -65,11 +88,43 @@ const Form = ({ data, setData, setMessage }) => {
 const Message = ({ author, text }) => {
 
   return (
-    <div className='oneMes'>
-      <hr />
-      <h2 className="oneMes-user">{author}</h2>
-      <p className="oneMes-text">{text}</p>
-      <hr />
+    <ListItem alignItems="flex-start">
+      <ListItemAvatar>
+        <Avatar alt={author} src="#" />
+      </ListItemAvatar>
+      <ListItemText
+        primary={author}
+        secondary={
+          <React.Fragment>
+            {/*<Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
+              Sandra Adams
+            </Typography>*/}
+            {text}
+          </React.Fragment>
+        }
+      />
+    </ListItem >
+  );
+}
+
+const ChatList = (props) => {
+
+  return (
+    <div className='App-chatListWRP'>
+      <h2>Чаты:</h2>
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {props.chatName.map((el, ind) => (
+          <ListItem className='App-chatList' key={el.id} disableGutters secondaryAction={
+            <IconButton aria-label="comment">
+              <CommentIcon />
+            </IconButton>
+          }>
+            <ListItemText primary={`${el.name}`} />
+          </ListItem>
+        ))}
+      </List>
     </div>
   )
 }
+
+export default App;
