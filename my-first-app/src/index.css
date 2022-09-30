@@ -19,13 +19,13 @@ footer {
   justify-content: space-around;
   align-items: center;
   padding: 10px;
-  background-color: aqua;
+  background-color: #00b8ff;
+  box-sizing: border-box;
 }
 
 .header-logo,
 .footer-copy {
   max-width: 250px;
-  background-color: red;
   padding: 10px;
 }
 
@@ -33,6 +33,7 @@ footer {
 .footer-message {
   max-width: 600px;
   padding: 10px;
+  text-align: center;
 }
 
 .header-right,
