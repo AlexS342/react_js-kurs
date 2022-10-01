@@ -39,6 +39,7 @@ const Navigation = () => {
 
     return (
         <List sx={style} component="nav" aria-label="mailbox folders">
+            <Divider />
             <Link to="/">
                 <ListItem button>
                     <ListItemText primary="Главная" />
@@ -56,6 +57,7 @@ const Navigation = () => {
                     <ListItemText primary="Чаты" />
                 </ListItem>
             </Link>
+            <Divider />
         </List>
     );
 }
