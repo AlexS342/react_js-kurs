@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Routes, Route, Link, } from "react
 import './App.css';                                                             //Подключили файл стилей для App.js
 import Home from './pages/home';
 import Profile from './pages/profile';
+import Chats from './pages/chats';
 /*material-ui для Navigation*/
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -19,7 +20,7 @@ function App() {
             <Routes>
                 <Route exact path='/' element={<Home />}></Route>
                 <Route exact path='/profile' element={<Profile />}></Route>
-                <Route path='/chats' element={<h1>Привет! Это заглушка для Chats</h1>}></Route>
+                <Route path='/chats' element={<Chats />}></Route>
                 <Route path='*' element={<h1>Ай Ай Ай! Так делать нельзя</h1>}></Route>
             </Routes>
         </>
