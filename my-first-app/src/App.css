@@ -71,7 +71,8 @@ main {
 nav>a:link,
 nav>a:visited,
 nav>a:active,
-nav>a:hover {
+nav>a:hover,
+nav>div>div>span {
   text-decoration: none;
-  color: #646464
+  color: #404040
 }
