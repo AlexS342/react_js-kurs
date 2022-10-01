@@ -10,7 +10,7 @@ function Home() {
             <p>Это главная страница</p>
             <p>Она пока пустая, но это временно</p>
         </div>
-    )
+    );
 }
 
 export default Home;
