@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom/client';                                        
 import './index.css';                                                           //Подключаем react index.css
 import App from './App';                                                        //Подключаем react App.js
 import reportWebVitals from './reportWebVitals';                                //Подключаем react reportWebVitals.js
+import { BrowserRouter } from 'react-router-dom';                               //Подключаем BrowserRouter для навигации
 
 const root = ReactDOM.createRoot(document.getElementById('root'));              //В константу root передаем лемент c id 'root' из index.html
 
 root.render(                                                                    //В root вставляем данны из app.js, а render отправляет их в index.html
   //React.StrictMode равносилев use strict в нативном js
+  //<BrowserRouter> для реализации навигации Router
   //<App /> получит данные из function App() в файле app.js
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
