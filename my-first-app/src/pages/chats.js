@@ -114,7 +114,7 @@ function Chats() {
                 }
             </List>
             <>
-                {chatId ? <ChatPage allArr={arr[chatId]} /> : <p>Выбери чат</p>}
+                {chatId && arr[chatId] ? <ChatPage allArr={arr[chatId]} /> : <p>Выбери чат</p>}
 
             </>
         </>
