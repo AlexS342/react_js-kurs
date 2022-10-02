@@ -113,7 +113,10 @@ function Chats() {
                     </div>)
                 }
             </List>
-            <ChatPage allArr={arr} />
+            <>
+                {chatId ? <ChatPage allArr={arr[chatId]} /> : <p>Выбери чат</p>}
+
+            </>
         </>
     );
 }
@@ -122,29 +125,28 @@ function Chats() {
 const ChatPage = (props) => {
 
     const allArr = props.allArr;
-    const author = allArr[0].name;
-    const message = allArr[0].messageList;
+    const author = allArr.name;
+    const message = allArr.messageList;
+
+    console.log(message);
 
     return (
-        <>
-            <p>message</p>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                <h3>{author}</h3>
-                {message.map((el, id) =>
-                    <ListItem key={id} alignItems="flex-start">
-                        <ListItemAvatar>
-                            <Avatar alt={el.author} src="/static/images/avatar/1.jpg" />
-                        </ListItemAvatar>
-                        <ListItemText primary={el.author} secondary={
-                            <React.Fragment>
-                                {el.message}
-                            </React.Fragment>
-                        }
-                        />
-                    </ListItem>
-                )}
-            </List>
-        </>
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <h3>{author}</h3>
+            {message.map((el, id) =>
+                <ListItem key={id} alignItems="flex-start">
+                    <ListItemAvatar>
+                        <Avatar alt={el.author} src="/static/images/avatar/1.jpg" />
+                    </ListItemAvatar>
+                    <ListItemText primary={el.author} secondary={
+                        <React.Fragment>
+                            {el.message}
+                        </React.Fragment>
+                    }
+                    />
+                </ListItem>
+            )}
+        </List>
     );
 }
 
