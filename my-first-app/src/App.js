@@ -1,5 +1,4 @@
 import * as React from 'react';                                                 //Подключили React
-//import { render } from 'react-dom';                                             //Подключили render
 import { Routes, Route, Link } from "react-router-dom";                           //Подключили BrowserRouter, RouterProvider, Routes, Route
 import './App.css';                                                             //Подключили файл стилей для App.js
 import Home from './pages/home';
