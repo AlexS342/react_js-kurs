@@ -1,11 +1,10 @@
 import * as React from 'react';                                                 //Подключили React
-import { render } from 'react-dom';                                             //Подключили render
-import { createBrowserRouter, RouterProvider, Routes, Route, Link, } from "react-router-dom";                           //Подключили BrowserRouter, RouterProvider, Routes, Route
+//import { render } from 'react-dom';                                             //Подключили render
+import { Routes, Route, Link } from "react-router-dom";                           //Подключили BrowserRouter, RouterProvider, Routes, Route
 import './App.css';                                                             //Подключили файл стилей для App.js
 import Home from './pages/home';
 import Profile from './pages/profile';
 import Chats from './pages/chats';
-/*material-ui для Navigation*/
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -20,26 +19,18 @@ function App() {
             <Routes>
                 <Route exact path='/' element={<Home />}></Route>
                 <Route exact path='/profile' element={<Profile />}></Route>
-                <Route path='/chats' element={<Chats />}></Route>
+                <Route path='/chats' element={<Chats />}>
+                    <Route path=':chatId' element={<Chats />}></Route>
+                </Route>
                 <Route path='*' element={<h1>Ай Ай Ай! Так делать нельзя</h1>}></Route>
             </Routes>
         </>
     );
 }
 
-//<Home />
-//{<h1>Привет! Это заглушка для Home</h1>}
-
-//Компанент навигации по страницам
-const style = {
-    width: '100%',
-    maxWidth: 360,
-    bgcolor: 'background.paper',
-};
 const Navigation = () => {
-
     return (
-        <List sx={style} component="nav" aria-label="mailbox folders">
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
             <Divider />
             <Link to="/">
                 <ListItem button>
