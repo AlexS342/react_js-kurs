@@ -128,8 +128,6 @@ const ChatPage = (props) => {
     const author = allArr.name;
     const message = allArr.messageList;
 
-    console.log(message);
-
     return (
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             <h3>{author}</h3>
