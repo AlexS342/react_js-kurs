@@ -13,23 +13,25 @@ function App() {
 
     return (
         <>
-            <p>Навигация</p>
-            <Navigation />
-            <Routes>
-                <Route exact path='/' element={<Home />}></Route>
-                <Route exact path='/profile' element={<Profile />}></Route>
-                <Route path='/chats' element={<Chats />}>
-                    <Route path=':chatId' element={<Chats />}></Route>
-                </Route>
-                <Route path='*' element={<h1>Ай Ай Ай! Так делать нельзя</h1>}></Route>
-            </Routes>
+            <Navigation className='Navigation' />
+            <div className='windowApp'>
+                <Routes>
+                    <Route exact path='/' element={<Home />}></Route>
+                    <Route exact path='/profile' element={<Profile />}></Route>
+                    <Route path='/chats' element={<Chats />}>
+                        <Route path=':chatId' element={<Chats />}></Route>
+                    </Route>
+                    <Route path='*' element={<h1>Ай Ай Ай! Так делать нельзя</h1>}></Route>
+                </Routes>
+            </div>
         </>
     );
 }
 
 const Navigation = () => {
     return (
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
+        <List sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
+            <p>Навигация</p>
             <Divider />
             <Link to="/">
                 <ListItem button>

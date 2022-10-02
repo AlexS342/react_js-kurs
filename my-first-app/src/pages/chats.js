@@ -100,23 +100,26 @@ function Chats() {
 
     return (
         <>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', }} component="nav" aria-label="mailbox folders">
-                <Divider />
-                {arr.map((el, id) =>
-                    <div key={id}>
-                        <Link to={`${id}`}>
-                            <ListItem button>
-                                <ListItemText primary={el.name} />
-                            </ListItem>
-                        </Link>
-                        <Divider />
-                    </div>)
-                }
-            </List>
-            <>
-                {chatId && arr[chatId] ? <ChatPage allArr={arr[chatId]} /> : <p>Выбери чат</p>}
+            <div className='chats'>
+                <List sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper', }} component="nav" aria-label="mailbox folders">
+                    <p>Чаты:</p>
+                    <Divider />
+                    {arr.map((el, id) =>
+                        <div key={id}>
+                            <Link to={`${id}`}>
+                                <ListItem button>
+                                    <ListItemText primary={el.name} />
+                                </ListItem>
+                            </Link>
+                            <Divider />
+                        </div>)
+                    }
+                </List>
+                <>
+                    {chatId && arr[chatId] ? <ChatPage allArr={arr[chatId]} /> : <p>Выбери чат</p>}
 
-            </>
+                </>
+            </div>
         </>
     );
 }
