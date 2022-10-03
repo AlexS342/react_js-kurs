@@ -116,7 +116,7 @@ function Chats() {
                     }
                 </List>
                 <>
-                    {chatId && arr[chatId] ? <ChatPage allArr={arr[chatId]} /> : <p>Выбери чат</p>}
+                    {chatId && arr[chatId] ? <ChatPage allArr={arr[chatId]} /> : <div className='chats-null'><p>Выбери чат</p></div>}
 
                 </>
             </div>
@@ -132,7 +132,7 @@ const ChatPage = (props) => {
     const message = allArr.messageList;
 
     return (
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <List sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}>
             <h3>{author}</h3>
             {message.map((el, id) =>
                 <ListItem key={id} alignItems="flex-start">
