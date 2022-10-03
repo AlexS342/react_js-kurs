@@ -30,8 +30,8 @@ function App() {
 
 const Navigation = () => {
     return (
-        <List sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
-            <p>Навигация</p>
+        <List className='navigation' sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
+            <p className='navigation-header'>Навигация</p>
             <Divider />
             <Link to="/">
                 <ListItem button>
