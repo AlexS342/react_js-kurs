@@ -1,121 +1,58 @@
-import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import './App.css';
-import './StyleApp.css';
-//Material UI
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
+import * as React from 'react';                                                 //Подключили React
+import { Routes, Route, Link } from "react-router-dom";                           //Подключили BrowserRouter, RouterProvider, Routes, Route
+import './App.css';                                                             //Подключили файл стилей для App.js
+import Home from './pages/home';
+import Profile from './pages/profile';
+import Chats from './pages/chats';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-//import CommentIcon from '@mui/icons-material/Comment';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-
-
-
+import Divider from '@mui/material/Divider';
 
 function App() {
-  const [messageList, setMessageList] = useState([]);
-  const [messageBody, setMessageBody] = useState({ text: '', author: '' });
-  const [chatList, setChatList] = useState([
-    { name: 'Спорт', id: 1 },
-    { name: 'Наука', id: 2 },
-    { name: 'Фотография', id: 3 },
-    { name: 'Кино', id: 4 },
-    { name: 'Отдых', id: 5 },
-  ])
-  const ROBOT_MESSAGE = 'Привет человет! Я получил твое сообщение';
 
-  useEffect(() => {
-    if (messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot') {
-      setTimeout(() => {
-        setMessageList(pervstate => [...pervstate, { text: ROBOT_MESSAGE, author: 'robot' }])
-      }, 1500)
-    }
-  }, [messageList]);
+    return (
+        <>
+            <Navigation className='Navigation' />
+            <div className='windowApp'>
+                <Routes>
+                    <Route exact path='/' element={<Home />}></Route>
+                    <Route exact path='/profile' element={<Profile />}></Route>
+                    <Route path='/chats' element={<Chats />}>
+                        <Route path=':chatId' element={<Chats />}></Route>
+                    </Route>
+                    <Route path='*' element={<h1>Ай Ай Ай! Так делать нельзя</h1>}></Route>
+                </Routes>
+            </div>
+        </>
+    );
+}
 
-  return (
-    <div className='App'>
-      <ChatList chatName={chatList} />
-      <div className='App-DialogueList'>
-        <h2>ChatName</h2>
-        <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList}></Form>
-        <List className='App-messageList' sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
-          {messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} />)}
+const Navigation = () => {
+    return (
+        <List className='navigation' sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
+            <p className='navigation-header'>Навигация</p>
+            <Divider />
+            <Link to="/">
+                <ListItem button>
+                    <ListItemText primary="Главная" />
+                </ListItem>
+            </Link>
+            <Divider />
+            <Link to="/profile">
+                <ListItem button>
+                    <ListItemText primary="Профиль" />
+                </ListItem>
+            </Link>
+            <Divider />
+            <Link to="/chats">
+                <ListItem button>
+                    <ListItemText primary="Чаты" />
+                </ListItem>
+            </Link>
+            <Divider />
         </List>
-      </div>
-
-    </div>
-  );
-}
-
-const Form = ({ data, setData, setMessage }) => {
-
-  const inputFocus = useRef(null);
-  const { text, author } = data;
-  const submitForm = (item) => {
-    if (text.length > 0) {
-      setMessage(prevent => [...prevent, { text, author }])
-      item.preventDefault();
-    }
-    setData({ text: '', author: '' })
-    inputFocus.current.childNodes[1].childNodes[0].focus()
-  }
-
-  return (
-    <form className="App-form" onSubmit={submitForm}>
-      <TextField fullWidth ref={inputFocus} label="Имя" id="fullWidth" autoFocus={true} value={author} onChange={(item) => {
-        setData(pervstate => ({ ...pervstate, author: item.target.value }));
-      }} />
-      <TextField fullWidth label="Сообщение" id="fullWidth" value={text} onChange={(item) => {
-        setData(pervstate => ({ ...pervstate, text: item.target.value }));
-      }} />
-      <Button type='submit' variant="contained" endIcon={<SendIcon />} > Send </Button>
-    </form>
-  )
-}
-
-const Message = ({ author, text }) => {
-
-  return (
-    <ListItem className='App-messageItem' alignItems="flex-start">
-      <ListItemAvatar>
-        <Avatar alt={author} src="#" />
-      </ListItemAvatar>
-      <ListItemText
-        primary={author}
-        secondary={
-          <React.Fragment>
-            {text}
-          </React.Fragment>
-        }
-      />
-    </ListItem >
-  );
-}
-
-const ChatList = (props) => {
-
-  return (
-    <div className='App-chatListWRP'>
-      <h2>Чаты:</h2>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-        {props.chatName.map((el) => (
-          <ListItem className='App-messageItem' key={el.id} disableGutters secondaryAction={
-            <IconButton aria-label="comment">
-              <DeleteIcon />
-            </IconButton>
-          }>
-            <ListItemText primary={`${el.name}`} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  )
+    );
 }
 
 export default App;

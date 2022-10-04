@@ -1,68 +1,124 @@
-body {
-  min-height: 100vh;
-  max-width: 1000px;
-  margin: 0 auto;
+/*Стили для всех компонентов*/
+#root {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-main {
-  max-width: 1000px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-content: flex-start;
+  justify-content: flex-start;
   flex-grow: 1;
   box-sizing: border-box;
 }
 
-.App {
-  width: 1000px;
-  min-height: 100%;
-  text-align: center;
+.windowApp {
+  flex-grow: 1;
   display: flex;
-  border: 1px solid rgb(202, 200, 200);
-  box-sizing: border-box;
-  padding: 5px;
+  justify-content: center;
 }
 
-.App-chatListWRP {
-  padding: 5px;
-  background-color: #00b8ff;
-  /* box-shadow: 2px 0px 5px 0px rgb(151 151 151); */
+.navigation{
+  border-left: 1px solid #d7d7d7;
+  border-top: 1px solid #d7d7d7;
+  box-shadow: 3px 3px 6px -2px #999999;
+  z-index: 2;
+}
+
+.navigation-header{
+  font-size: 18px;
+  text-align: center;
+}
+
+nav.navigation>a>div>div>span{
+  text-align: center;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.home {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.prof {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prof-p{
+  height: 16px;
+  margin: 5px;
+}
+
+.profCart{
+  background-color: #ededed;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 16px auto;
+  padding: 15px;
+}
+
+.profCart-img{
+  width: 150px;
+  margin: 0 auto;
+}
+
+.profCart-name{
+text-align: center;
+}
+
+.profCart-p{
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.profCart-pSpan{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.chats {
+  flex-grow: 1;
+  display: flex;
+}
+
+.chats>nav{
+  margin-top: 10px;
+  border-top: 1px solid #d7d7d7;
+  box-shadow: 3px 3px 6px -2px #999999;
   z-index: 1;
-  box-sizing: border-box;
-  width: 25%;
 }
 
-.App-chatList {
-  padding-left: 8px;
+.chats>nav>p{
+  font-size: 18px;
+  text-align: center;
 }
 
-.App-DialogueList {
-  width: 75%;
-  /* border: 1px solid rgb(202, 200, 200); */
-  box-sizing: border-box;
+.chats>nav>div>a>div>div>span{
+  text-align: center;
 }
 
-.App-form {
+.chats>ul>h3{
+  text-align: center;
+}
+
+.chats-null{
   width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 60px;
 }
 
-.App-form>div {
-  padding-bottom: 10px;
-}
-
-.App-messageList {
-  box-sizing: border-box;
-}
-
-.App-messageItem {
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 8px;
+nav>a:link,
+nav>a:visited,
+nav>a:active,
+nav>a:hover,
+nav>div>a {
+  text-decoration: none;
+  color: #404040
 }
