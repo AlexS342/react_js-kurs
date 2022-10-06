@@ -4,6 +4,8 @@ import './index.css';                                                           
 import App from './App';                                                        //Подключаем react App.js
 import reportWebVitals from './reportWebVitals';                                //Подключаем react reportWebVitals.js
 import { BrowserRouter } from 'react-router-dom';                               //Подключаем BrowserRouter для навигации
+import { Provider } from 'react-redux';
+import { store } from './reduxSample/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));              //В константу root передаем лемент c id 'root' из index.html
 
@@ -13,7 +15,9 @@ root.render(                                                                    
   //<App /> получит данные из function App() в файле app.js
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
