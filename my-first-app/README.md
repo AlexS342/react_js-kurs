@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Расшивровка названий веток
+lesson-1 => ветка созданная из ветки master на домашнем ПК для выполнения ДЗ с 
+    первого урока, для сдачи в проверку был создан puul request на сравнение с 
+    веткой master, который, поле прерки, был закрыт, а ветка master получа все 
+    изменения
+    цифра через тире указывает на номер урока
+lesson-3R => ветка с приставкой R создается из ветки lesson с аналогичным 
+    номером для выполнении работ на рабочем ПК и не всегда объединяется с веткой
+    родителем, но ни когда не объединяется с веткой master.
+lesson-5M => приставка M означает, что эта ветка создана не из ветки master, а 
+    из ветки с предыдужего урока, так как еще не закрыт pull request по 
+    предыдущему уроку, но в ветку с предыдущего урока изменения не планируются, 
+    а еще содержимое будет слито с веткой master. 
+    Это делается для того, чтобы не дожидатся результатов проверки от ревьюрера
