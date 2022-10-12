@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Toggler from '../reduxSample/toggler';
 
 function Profile() {
 
@@ -11,9 +10,7 @@ function Profile() {
                 <p className='prof-p'>Мы уже работаем над этой проблемой.</p>
                 <p className='prof-p'>Попробуйте зарегистрироватся в другой раз.</p>
                 <p className='prof-p'>Примерно так будет выглядеть твая анкета после регистрации</p>
-                <Toggler />
                 <MyProf />
-
             </div>
         </>
     );

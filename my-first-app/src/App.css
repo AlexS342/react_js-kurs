@@ -13,19 +13,19 @@
   justify-content: center;
 }
 
-.navigation{
+.navigation {
   border-left: 1px solid #d7d7d7;
   border-top: 1px solid #d7d7d7;
   box-shadow: 3px 3px 6px -2px #999999;
   z-index: 2;
 }
 
-.navigation-header{
+.navigation-header {
   font-size: 18px;
   text-align: center;
 }
 
-nav.navigation>a>div>div>span{
+nav.navigation>a>div>div>span {
   text-align: center;
 }
 
@@ -46,12 +46,12 @@ nav.navigation>a>div>div>span{
   align-items: center;
 }
 
-.prof-p{
+.prof-p {
   height: 16px;
   margin: 5px;
 }
 
-.profCart{
+.profCart {
   background-color: #ededed;
   border: 1px solid #bdbdbd;
   border-radius: 10px;
@@ -61,21 +61,21 @@ nav.navigation>a>div>div>span{
   padding: 15px;
 }
 
-.profCart-img{
+.profCart-img {
   width: 150px;
   margin: 0 auto;
 }
 
-.profCart-name{
-text-align: center;
+.profCart-name {
+  text-align: center;
 }
 
-.profCart-p{
+.profCart-p {
   font-size: 16px;
   margin: 5px 0;
 }
 
-.profCart-pSpan{
+.profCart-pSpan {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-style: italic;
 }
@@ -86,27 +86,27 @@ text-align: center;
   display: flex;
 }
 
-.chats>nav{
+.chats>nav {
   margin-top: 10px;
   border-top: 1px solid #d7d7d7;
   box-shadow: 3px 3px 6px -2px #999999;
   z-index: 1;
 }
 
-.chats>nav>p{
+.chats>nav>p {
   font-size: 18px;
   text-align: center;
 }
 
-.chats>nav>div>a>div>div>span{
+.chats>nav>div>a>div>div>span {
   text-align: center;
 }
 
-.chats>ul>h3{
+.chats>ul>h3 {
   text-align: center;
 }
 
-.chats-null{
+.chats-null {
   width: 100%;
   height: 100%;
   display: flex;
@@ -114,11 +114,59 @@ text-align: center;
   font-size: 60px;
 }
 
+.chats>nav>div>div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chats_del {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: #00b8ff;
+  border-radius: 50%;
+  margin: 0 5px;
+  /* font-size: 20px;
+  line-height: 20px; */
+}
+
+.chats_del:hover {
+  box-shadow: 0px 0px 4px 2px #677781;
+}
+
+.chats_del:active {
+  background-color: #059bff;
+}
+
+.chats_add {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+
 nav>a:link,
 nav>a:visited,
 nav>a:active,
 nav>a:hover,
-nav>div>a {
+nav>div>div>a {
   text-decoration: none;
-  color: #404040
+  color: #404040;
+  flex-grow: 1;
+}
+
+.form {
+  width: 90%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form>div {
+  flex-grow: 1;
+}
+
+.form>button {
+  margin-left: 5px;
 }
