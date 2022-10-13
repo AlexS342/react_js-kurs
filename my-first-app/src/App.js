@@ -1,13 +1,10 @@
-import * as React from 'react';                                                 //Подключили React
-import { Routes, Route, Link } from "react-router-dom";                           //Подключили BrowserRouter, RouterProvider, Routes, Route
-import './App.css';                                                             //Подключили файл стилей для App.js
+import * as React from 'react';
+import { Routes, Route, } from "react-router-dom";
+import './App.css';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import Chats from './pages/chats';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
+import Navigation from './Components/App/Navigation'
 
 function App() {
 
@@ -25,33 +22,6 @@ function App() {
                 </Routes>
             </div>
         </>
-    );
-}
-
-const Navigation = () => {
-    return (
-        <List className='navigation' sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
-            <p className='navigation-header'>Навигация</p>
-            <Divider />
-            <Link to="/">
-                <ListItem button>
-                    <ListItemText primary="Главная" />
-                </ListItem>
-            </Link>
-            <Divider />
-            <Link to="/profile">
-                <ListItem button>
-                    <ListItemText primary="Профиль" />
-                </ListItem>
-            </Link>
-            <Divider />
-            <Link to="/chats">
-                <ListItem button>
-                    <ListItemText primary="Чаты" />
-                </ListItem>
-            </Link>
-            <Divider />
-        </List>
     );
 }
 

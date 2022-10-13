@@ -5,7 +5,8 @@ import App from './App';                                                        
 import reportWebVitals from './reportWebVitals';                                //Подключаем react reportWebVitals.js
 import { BrowserRouter } from 'react-router-dom';                               //Подключаем BrowserRouter для навигации
 import { Provider } from 'react-redux';
-import { store } from './reduxSample/store';
+//import { store } from './reduxSample/store';
+import { store } from './store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));              //В константу root передаем лемент c id 'root' из index.html
 
