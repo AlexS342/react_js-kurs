@@ -103,7 +103,7 @@ const chatSlice = createSlice({
         },
         removeChat: (state, action) => {
             state.splice(action.payload, 1);
-            state.map((e, i) => { e.id = i });
+            state.map((e, i) => ({ ...e, id: i }));
             return state
         },
         removeMessage: (state, action) => {
