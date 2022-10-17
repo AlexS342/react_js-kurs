@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, } from 'react';
 //for toolkit
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from '../../slices/chats';
+import { addMessage, saysCyborg } from '../../slices/chats';
 //material-ui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -11,8 +11,8 @@ import SendIcon from '@mui/icons-material/Send';
 const ChatForm = () => {
 
     const dispatch = useDispatch();
-
-    const addMessageHandler = (value, chatID) => { dispatch(addMessage([value, chatID])); }
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Вызываю aysCyborg() при отправке сообщения
+    const addMessageHandler = (value, chatID) => { dispatch(addMessage([value, chatID])); dispatch(saysCyborg()); }
 
     const chatID = useSelector(state => state.chatID);
 

@@ -1,5 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+//==============================================================================
+export const saysCyborg = createAsyncThunk(
+    'chats/saysCyborg',
+    async function () {
+        console.log('says cyborg: First Hi!')
+        setTimeout(() => {
+            console.log('says cyborg: Second Hi!')
+            const date = { author: 'robot', message: 'Привет!' };
+            return date;
+        }, 1500)
+    }
+)
+//==============================================================================
 const arrChats = [
     {
         id: 0,
@@ -48,7 +60,17 @@ const chatSlice = createSlice({
         addMessage: (state, action) => {
             state[action.payload[1]].messageList.push({ author: 'You', message: action.payload[0] })
             return state
+        },
+        extraReducers: {
+            [saysCyborg.pending]: (state, action) => {
+                console.log('says cyborg: Third Hi!')
+            },
+            [saysCyborg.fulfilled]: (state, action) => {
+                console.log('says cyborg: Fourth Hi!')
+            },
+
         }
+
     },
 });
 
