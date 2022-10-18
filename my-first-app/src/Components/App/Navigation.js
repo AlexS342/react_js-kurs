@@ -8,7 +8,9 @@ import Divider from '@mui/material/Divider';
 
 const Navigation = () => {
     return (
-        <List className='navigation' sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }} component="nav" aria-label="mailbox folders">
+        <List className='navigation'
+            sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }}
+            component="nav" aria-label="mailbox folders">
             <p className='navigation-header'>Навигация</p>
             <Divider />
             <Link to="/">
