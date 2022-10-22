@@ -170,3 +170,40 @@ nav>div>div>a {
 .form>button {
   margin-left: 5px;
 }
+
+.todos {
+  display: flex;
+  flex-direction: column;
+}
+
+.todos-item {
+  display: flex;
+}
+
+.todos-load {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.todos-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todos-error>h2 {
+  margin-top: 50px;
+}
+
+.todos-error>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todos-error>button {
+  margin-bottom: 50px;
+}
