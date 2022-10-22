@@ -5,12 +5,11 @@ const chatIDSlice = createSlice({
     initialState: 0,
     reducers: {
         sendID: (state, action) => {
-            state = action.payload
-            return state
+            state = action.payload;
+            return state;
         },
     },
 });
-
 
 export const { sendID } = chatIDSlice.actions;
 export const chatIDReducer = chatIDSlice.reducer;

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import ChatPage from '../Components/Chats/ChatPage';
-//for toolkit
+import ChatPage from '../Components/Chats/Container/ChatPage';
 import { useDispatch, useSelector } from "react-redux";
 import { addChat, removeChat, } from '../slices/chats';
 import { sendID } from '../slices/chatID';
-//material-ui
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -19,14 +17,10 @@ import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp
 function Chats() {
 
     let { chatId } = useParams();
-
     const dispatch = useDispatch();
-
     const chats = useSelector(state => state.chat);
-
     const removeChatHandler = (id) => { dispatch(removeChat(id)); }
     const addChatHandler = () => { dispatch(addChat(newChat)); }
-
     const sendChatIdHandler = (id) => { dispatch(sendID(id)) }
 
     const newChat = {
@@ -49,9 +43,7 @@ function Chats() {
                                         <ListItemText primary={el.name} />
                                     </ListItem>
                                 </Link>
-                                <IconButton aria-label="delete" onClick={() => {
-                                    removeChatHandler(id);
-                                }}>
+                                <IconButton aria-label="delete" onClick={() => { removeChatHandler(id); }}>
                                     <DeleteIcon />
                                 </IconButton>
                             </div>
@@ -59,15 +51,15 @@ function Chats() {
                         </div>
                     )}
                     <div className='chats_add'>
-                        <Button onClick={() => {
-                            addChatHandler();
-                        }} variant="contained" endIcon={<AddCircleOutlineSharpIcon />}>
+                        <Button onClick={() => { addChatHandler(); }} variant="contained" endIcon={<AddCircleOutlineSharpIcon />}>
                             Add chat
                         </Button>
                     </div>
                 </List>
                 <>
-                    {chatId && chats[chatId] ? <ChatPage /> : <div className='chats-null'><p>Выбери чат</p></div>}
+                    {chatId && chats[chatId]
+                        ? <ChatPage />
+                        : <div className='chats-null'><p>Выбери чат</p></div>}
                 </>
             </div>
         </>

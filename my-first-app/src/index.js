@@ -1,29 +1,26 @@
-import React from 'react';                                          //Подключаем react
-import ReactDOM from 'react-dom/client';                                        //Подключаем react-dom/client
-import './index.css';                                                           //Подключаем react index.css
-import App from './App';                                                        //Подключаем react App.js
-import reportWebVitals from './reportWebVitals';                                //Подключаем react reportWebVitals.js
-import { BrowserRouter } from 'react-router-dom';                               //Подключаем BrowserRouter для навигации
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-//import { store } from './reduxSample/store';
-import { store } from './store/store';
+import { store, persistor } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));              //В константу root передаем лемент c id 'root' из index.html
 
-root.render(                                                                    //В root вставляем данны из app.js, а render отправляет их в index.html
-  //React.StrictMode равносилев use strict в нативном js
-  //<BrowserRouter> для реализации навигации Router
-  //<App /> получит данные из function App() в файле app.js
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <PersistGate persistor={persistor} loading={null}>
+          <App />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();                                                              //Пока не объеснили
+reportWebVitals();
