@@ -5,10 +5,10 @@ import Home from './pages/home';
 import Profile from './pages/profile';
 import Chats from './pages/chats';
 import Todos from './pages/todos';
+import Test from './pages/test';
 import Navigation from './Components/App/Navigation';
 
 function App() {
-
     return (
         <>
             <Navigation className='Navigation' />
@@ -20,6 +20,7 @@ function App() {
                     <Route path='/chats' element={<Chats />}>
                         <Route path=':chatId' element={<Chats />}></Route>
                     </Route>
+                    <Route exact path='/test' element={<Test />}></Route>
                     <Route path='*'
                         element={<h1>Ай Ай Ай! Так делать нельзя</h1>}>
                     </Route>

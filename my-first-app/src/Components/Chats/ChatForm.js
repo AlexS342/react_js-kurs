@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { useState, useCallback, useRef, } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage, saysCyborg } from '../../../slices/chats';
-import Form from '../Presentation/form';
+import { addMessage, saysCyborg } from '../../slices/chats';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import SendIcon from '@mui/icons-material/Send';
+
 
 const ChatForm = () => {
 
@@ -28,12 +31,15 @@ const ChatForm = () => {
     }
 
     return (
-        <Form
-            handleSubmit={handleSubmit}
-            inputFocus={inputFocus}
-            clear={clear}
-            handleChange={handleChange}
-        />
+        <form className='form' onSubmit={handleSubmit}>
+            <TextField size="small" ref={inputFocus}
+                fullWidth label="Ваше сообщение" id="fullWidth"
+                value={clear} onChange={handleChange}
+            />
+            <Button type='submit' variant="contained" endIcon={<SendIcon />}>
+                Send
+            </Button>
+        </form>
     );
 }
 

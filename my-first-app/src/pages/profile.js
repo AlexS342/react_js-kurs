@@ -1,4 +1,10 @@
 import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { useState, } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAuth } from '../hooks/useAuth';
+import { loginUser, registeringNewUser, removeUser } from '../slices/user';
 
 function Profile() {
 
@@ -6,47 +12,48 @@ function Profile() {
         <>
             <div className='prof'>
                 <h2 className='prof-title'>Добро пожалоть User!</h2>
-                <p className='prof-p'>Регистрация пока не доступна.</p>
-                <p className='prof-p'>Мы уже работаем над этой проблемой.</p>
-                <p className='prof-p'>
-                    Попробуйте зарегистрироватся в другой раз.
-                </p>
-                <p className='prof-p'>
-                    Примерно так будет выглядеть твая анкета после регистрации
-                </p>
-                <MyProf />
+                <RegForm />
             </div>
         </>
     );
 }
 
-const MyProf = () => {
-
-    return (
-        <div className='profCart'>
-            <img className='profCart-img' src='logo192.png' alt='ava'></img>
-            <h3 className='profCart-name'>Alex</h3>
-            <p className='profCart-p'>Возрост:
-                <span className='profCart-pSpan'>75 лет</span>
-            </p>
-            <p className='profCart-p'>Страна:
-                <span className='profCart-pSpan'>Россия</span>
-            </p>
-            <p className='profCart-p'>Город:
-                <span className='profCart-pSpan'>Набережные челны</span>
-            </p>
-            <p className='profCart-p'>Интересы:
-                <span className='profCart-pSpan'>
-                    Музыка, Гонки, Путешествия
-                </span>
-            </p>
-            <p className='profCart-p'>Образование:
-                <span className='profCart-pSpan'>
-                    Доктор фантастических наук
-                </span>
-            </p>
-        </div>
-    )
-}
 
 export default Profile;
+
+const RegForm = () => {
+
+    const isAuth = useAuth().isAuth
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('')
+    const dispatch = useDispatch();
+
+    return !isAuth ?
+        (
+            <div className='formReg'>
+                <TextField size="small" fullWidth label="Введите e-mail" id="fullWidth" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                <TextField size="small" id="outlined-password-input" label="Введите пароль" type="password" autoComplete="current-password" value={pass} onChange={(e) => { setPass(e.target.value) }} />
+                <Button type='submit' variant="contained" onClick={() => { dispatch(registeringNewUser({ email, pass, })) }}>
+                    Зарегистрироватся
+                </Button>
+                <Button type='submit' variant="contained" onClick={() => { dispatch(loginUser({ email, pass })) }}>
+                    Войти
+                </Button>
+            </div >
+        ) :
+        <div>
+            <h1>Данные юзера</h1>
+            <div>
+                <h2>Привет, {email}</h2>
+            </div>
+            <Button type='submit' variant="contained" onClick={() => { dispatch(removeUser()) }}>
+                Выйти
+            </Button>
+        </div >
+}
+
+
+
+
+
+

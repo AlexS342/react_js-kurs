@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import ChatPage from '../Components/Chats/Container/ChatPage';
+import ChatPage from '../Components/Chats/ChatPage';
 import { useDispatch, useSelector } from "react-redux";
 import { addChat, removeChat, } from '../slices/chats';
 import { sendID } from '../slices/chatID';
@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
+
 
 function Chats() {
 
