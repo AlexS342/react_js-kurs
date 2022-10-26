@@ -7,7 +7,6 @@ export const registeringNewUser = createAsyncThunk(
     async ({ email, pass }) => {
         try {
             const userCredit = await createUserWithEmailAndPassword(auth, email, pass)
-            //console.log(userCredit.user)
             const userData = {
                 email: userCredit.user.email,
                 id: userCredit.user.uid,
@@ -55,24 +54,18 @@ const userSlice = createSlice({
     },
     extraReducers: {
         [registeringNewUser.pending]: (state) => {
-            console.log('pending ok');
         },
         [registeringNewUser.fulfilled]: (state, action) => {
-            console.log('registering fulfilled ok');
             return state = action.payload
         },
         [registeringNewUser.rejected]: (state, action) => {
-            console.log('registering error ok');
         },
         [loginUser.pending]: (state) => {
-            console.log('login pending ok');
         },
         [loginUser.fulfilled]: (state, action) => {
-            console.log('login fulfilled ok');
             return state = action.payload
         },
         [loginUser.rejected]: (state, action) => {
-            console.log('login error ok');
         }
 
     },

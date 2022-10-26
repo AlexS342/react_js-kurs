@@ -31,18 +31,6 @@ const Navigation = () => {
                 </ListItem>
             </Link>
             <Divider />
-            <Link to="/todos">
-                <ListItem button>
-                    <ListItemText primary="Задачи" />
-                </ListItem>
-            </Link>
-            <Divider />
-            <Link to="/test">
-                <ListItem button>
-                    <ListItemText primary="Тест" />
-                </ListItem>
-            </Link>
-            <Divider />
         </List>
     );
 }

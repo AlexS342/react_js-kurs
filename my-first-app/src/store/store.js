@@ -1,10 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-import { chatReducer } from '../slices/chats';
 import { chatIDReducer } from '../slices/chatID';
-import { todosReducer } from '../slices/todos';
 import { userReducer } from '../slices/user';
 
 const persistConfig = {
@@ -13,9 +10,7 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    chat: chatReducer,
     chatID: chatIDReducer,
-    todos: todosReducer,
     user: userReducer,
 });
 

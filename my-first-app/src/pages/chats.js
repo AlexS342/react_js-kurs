@@ -2,70 +2,94 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import ChatPage from '../Components/Chats/ChatPage';
-import { useDispatch, useSelector } from "react-redux";
-import { addChat, removeChat, } from '../slices/chats';
+import { useDispatch, } from "react-redux";
 import { sendID } from '../slices/chatID';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
-import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
+import { Navigate, } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { firestore } from '../firebase/firebase';
+
 
 
 function Chats() {
 
+    const isAuth = useAuth().isAuth
     let { chatId } = useParams();
     const dispatch = useDispatch();
-    const chats = useSelector(state => state.chat);
-    const removeChatHandler = (id) => { dispatch(removeChat(id)); }
-    const addChatHandler = () => { dispatch(addChat(newChat)); }
+
     const sendChatIdHandler = (id) => { dispatch(sendID(id)) }
 
-    const newChat = {
-        id: null,
-        name: 'user',
-        messageList: []
+    useEffect(() => {
+        getPostsHandler1()
+    }, []);
+    const [data1, setData1] = useState([]);
+    const getPostsHandler1 = async () => {
+        let data = await getAllPosts();
+        setData1(data);
+    }
+    const getAllPosts = async () => {
+        const response = await getDocs(collection(firestore, 'chats'))
+        const arr = response.docs.map(e => e.data())
+        return arr
     }
 
-    return (
+    const [value, setValue] = useState('');
+    const addPost = async (data) => {
+        await setDoc(doc(firestore, `chats/${data}`), { name: data, id: data });
+    }
+
+    const addPost2 = async (data) => {
+        await setDoc(doc(firestore, `chats/${data}/message/${data}`), { author: 'robot', text: 'Чат инициализирован.' });
+    }
+
+    return isAuth ? (
         <>
             <div className='chats'>
                 <List sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper', }} component="nav" aria-label="mailbox folders">
-                    <p>Чаты:</p>
+                    <h3>Список чатов:</h3>
                     <Divider />
-                    {chats.map((el, id) =>
-                        <div key={id} >
+                    {data1.map((el, id) =>
+                        <div key={el.id}>
                             <div>
-                                <Link to={`${id}`}>
-                                    <ListItem button onClick={() => sendChatIdHandler(id)}>
-                                        <ListItemText primary={el.name} />
+                                <Link to={el.id}>
+                                    <ListItem button onClick={() => sendChatIdHandler(el.id)}>
+                                        <ListItemText primary={el.name} secondary={el.email} />
                                     </ListItem>
                                 </Link>
-                                <IconButton aria-label="delete" onClick={() => { removeChatHandler(id); }}>
-                                    <DeleteIcon />
-                                </IconButton>
                             </div>
                             <Divider />
                         </div>
                     )}
-                    <div className='chats_add'>
-                        <Button onClick={() => { addChatHandler(); }} variant="contained" endIcon={<AddCircleOutlineSharpIcon />}>
-                            Add chat
-                        </Button>
+                    <div className='chats-forma'>
+
+                        <input placeholder='Имя чата'
+                            onChange={(e) => { setValue(e.target.value) }}
+                        />
+
+                        <button onClick={() => {
+                            addPost(value);
+                            addPost2(value)
+                            getPostsHandler1()
+                        }}>
+                            Добавить Чат
+                        </button>
+
                     </div>
                 </List>
                 <>
-                    {chatId && chats[chatId]
+                    {chatId
                         ? <ChatPage />
                         : <div className='chats-null'><p>Выбери чат</p></div>}
                 </>
-            </div>
+            </div >
         </>
-    );
+    ) :
+        (<Navigate to={'/profile'} />)
 }
 
 export default Chats;

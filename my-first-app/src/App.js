@@ -4,8 +4,6 @@ import './App.css';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import Chats from './pages/chats';
-import Todos from './pages/todos';
-import Test from './pages/test';
 import Navigation from './Components/App/Navigation';
 
 function App() {
@@ -16,11 +14,9 @@ function App() {
                 <Routes>
                     <Route exact path='/' element={<Home />}></Route>
                     <Route exact path='/profile' element={<Profile />}></Route>
-                    <Route exact path='/todos' element={<Todos />}></Route>
                     <Route path='/chats' element={<Chats />}>
                         <Route path=':chatId' element={<Chats />}></Route>
                     </Route>
-                    <Route exact path='/test' element={<Test />}></Route>
                     <Route path='*'
                         element={<h1>Ай Ай Ай! Так делать нельзя</h1>}>
                     </Route>

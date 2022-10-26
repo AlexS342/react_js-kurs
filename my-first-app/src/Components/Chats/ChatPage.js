@@ -1,48 +1,82 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { removeMessage, } from '../../slices/chats';
-import ChatForm from './ChatForm';
+import { useSelector } from "react-redux";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useEffect, useState } from 'react';
+import { collection, getDocs, addDoc, } from "firebase/firestore";
+import { firestore } from '../../firebase/firebase';
+import { useAuth } from '../../hooks/useAuth';
 
 const ChatPage = () => {
-    const dispatch = useDispatch();
-    const chats = useSelector(state => state.chat);
-    const removeMessageHandler = (id) => { dispatch(removeMessage({ chatID, id })); }
 
     const chatID = useSelector(state => state.chatID);
-    const author = chats[chatID].name;
-    const message = chats[chatID].messageList;
+    const put = 'chats/' + chatID + '/message'
+    const [data, setData] = useState([])
+
+    const getPostsHandler = async () => {
+        let data = await getAllPost()
+        setData(data)
+    }
+
+    useEffect(() => {
+        getPostsHandler()
+    }, [data])
+
+    const getAllPost = async () => {
+        const response = await getDocs(collection(firestore, put))
+        const arr = response.docs.map(e => e.data())
+        return arr
+    }
 
     return (
         <List sx={{
             width: '100%', maxWidth: 600, bgcolor: 'background.paper'
         }}>
-            <h3>{author}</h3>
-            {message.map((el, id) =>
+            <h3>Чат {chatID}</h3>
+            {data.map((el, id) =>
                 <ListItem key={id} alignItems="flex-start">
                     <ListItemAvatar>
                         <Avatar alt={el.author}
                             src="/static/images/avatar/1.jpg" />
                     </ListItemAvatar>
                     <ListItemText primary={el.author} secondary={
-                        <React.Fragment> {el.message} </React.Fragment>
+                        <React.Fragment> {el.text} </React.Fragment>
                     } />
-                    <IconButton aria-label="delete" onClick={() => {
-                        removeMessageHandler(id)
-                    }}>
-                        <DeleteIcon />
-                    </IconButton>
                 </ListItem>
             )}
-            <ChatForm />
+            <MessageForm />
         </List>
     );
 }
 
 export default ChatPage;
+
+const MessageForm = () => {
+
+    const emailAuth = useAuth().email;
+
+    const chatID = useSelector(state => state.chatID);
+
+    const [value, setValue] = useState('');
+    const addPost = async (data) => {
+        const result = addDoc(collection(firestore, `chats/${chatID}/message`), { text: data, author: emailAuth })
+    }
+
+    return (
+        <div>
+            <input placeholder='Сообщение'
+                onChange={(e) => { setValue(e.target.value) }}
+            />
+            <button onClick={() => {
+                console.log('Кнопка нажата')
+                addPost(value);
+            }}>
+                Отправить
+            </button>
+        </div>
+    )
+
+}

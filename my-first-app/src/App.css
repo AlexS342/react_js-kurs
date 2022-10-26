@@ -91,6 +91,9 @@ nav.navigation>a>div>div>span {
   border-top: 1px solid #d7d7d7;
   box-shadow: 3px 3px 6px -2px #999999;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .chats>nav>p {
@@ -154,6 +157,11 @@ nav>div>div>a {
   text-decoration: none;
   color: #404040;
   flex-grow: 1;
+}
+
+.chats-forma {
+  display: flex;
+  flex-direction: column;
 }
 
 .form {
