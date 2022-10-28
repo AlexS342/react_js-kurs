@@ -23,7 +23,7 @@ const ChatPage = () => {
 
     useEffect(() => {
         getPostsHandler()
-    }, [data])
+    }, [chatID])
 
     const getAllPost = async () => {
         const response = await getDocs(collection(firestore, put))
