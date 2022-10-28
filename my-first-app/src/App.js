@@ -4,11 +4,9 @@ import './App.css';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import Chats from './pages/chats';
-import Todos from './pages/todos';
 import Navigation from './Components/App/Navigation';
 
 function App() {
-
     return (
         <>
             <Navigation className='Navigation' />
@@ -16,7 +14,6 @@ function App() {
                 <Routes>
                     <Route exact path='/' element={<Home />}></Route>
                     <Route exact path='/profile' element={<Profile />}></Route>
-                    <Route exact path='/todos' element={<Todos />}></Route>
                     <Route path='/chats' element={<Chats />}>
                         <Route path=':chatId' element={<Chats />}></Route>
                     </Route>

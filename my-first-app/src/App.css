@@ -51,7 +51,7 @@ nav.navigation>a>div>div>span {
   margin: 5px;
 }
 
-.profCart {
+/* .profCart {
   background-color: #ededed;
   border: 1px solid #bdbdbd;
   border-radius: 10px;
@@ -78,7 +78,7 @@ nav.navigation>a>div>div>span {
 .profCart-pSpan {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-style: italic;
-}
+} */
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .chats {
@@ -91,6 +91,9 @@ nav.navigation>a>div>div>span {
   border-top: 1px solid #d7d7d7;
   box-shadow: 3px 3px 6px -2px #999999;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .chats>nav>p {
@@ -156,6 +159,11 @@ nav>div>div>a {
   flex-grow: 1;
 }
 
+.chats-forma {
+  display: flex;
+  flex-direction: column;
+}
+
 .form {
   width: 90%;
   margin: 10px auto;
@@ -206,4 +214,16 @@ nav>div>div>a {
 
 .todos-error>button {
   margin-bottom: 50px;
+}
+
+.formReg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formReg>div,
+.formReg>button {
+  margin: 10px 0;
+  width: 100%;
 }
