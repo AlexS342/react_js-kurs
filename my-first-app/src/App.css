@@ -38,6 +38,16 @@ nav.navigation>a>div>div>span {
   justify-content: space-evenly;
 }
 
+.home-img {
+  width: 250px;
+  height: 250px;
+}
+
+.home-p {
+  text-align: center;
+  margin: 16px;
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .prof {
   flex-grow: 1;

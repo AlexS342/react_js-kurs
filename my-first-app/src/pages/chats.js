@@ -11,8 +11,7 @@ import Divider from '@mui/material/Divider';
 import { Navigate, } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
-import { firestore } from '../firebase/firebase';
+import { addChat, initChat, getAllChats } from '../firebase/crud'
 
 
 
@@ -24,28 +23,15 @@ function Chats() {
 
     const sendChatIdHandler = (id) => { dispatch(sendID(id)) }
 
-    useEffect(() => {
-        getPostsHandler1()
-    }, []);
+    useEffect(() => { getPostsHandler1() }, []);
+
     const [data1, setData1] = useState([]);
     const getPostsHandler1 = async () => {
-        let data = await getAllPosts();
+        let data = await getAllChats();
         setData1(data);
-    }
-    const getAllPosts = async () => {
-        const response = await getDocs(collection(firestore, 'chats'))
-        const arr = response.docs.map(e => e.data())
-        return arr
     }
 
     const [value, setValue] = useState('');
-    const addPost = async (data) => {
-        await setDoc(doc(firestore, `chats/${data}`), { name: data, id: data });
-    }
-
-    const addPost2 = async (data) => {
-        await setDoc(doc(firestore, `chats/${data}/message/${data}`), { author: 'robot', text: 'Чат инициализирован.' });
-    }
 
     return isAuth ? (
         <>
@@ -72,9 +58,9 @@ function Chats() {
                         />
 
                         <button onClick={() => {
-                            addPost(value);
-                            addPost2(value)
-                            getPostsHandler1()
+                            addChat(value);
+                            initChat(value);
+                            getPostsHandler1();
                         }}>
                             Добавить Чат
                         </button>
