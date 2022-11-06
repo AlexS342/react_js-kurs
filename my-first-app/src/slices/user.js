@@ -47,6 +47,7 @@ const userSlice = createSlice({
 
     reducers: {
         removeUser: (state) => {
+            state.isAuth = false
             state.email = null
             state.token = null
             state.id = null
